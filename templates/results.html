@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}Your Recommendations | MyStack Naija{% endblock %}
+
+{% block content %}
+
+<section class="results">
+
+    <h1>Your Recommended Tools</h1>
+
+    <p>
+        Based on your {{ business.business_type }} business,
+        here are your three recommended tools.
+    </p>
+
+    <div class="score-card">
+        <h2>Your Digital Adoption Score</h2>
+        <p class="score">{{ "%.1f"|format(assessment.overall_score) }}%</p>
+        <h3>{{ assessment.score_label }}</h3>
+    </div>
+
+    <h2>Your Business Priorities</h2>
+
+    <div class="priority-list">
+        {% for priority in priority_names %}
+        <span class="priority-tag">{{ priority }}</span>
+        {% else %}
+        <p>No priority areas identified.</p>
+        {% endfor %}
+    </div>
+
+    <h2>Recommended Tools</h2>
+
+    <div class="tool-list">
+
+        {% for item in recommendations %}
+
+        <article class="tool-card">
+
+            <h3>{{ item.rank }}. {{ item.tool.name }}</h3>
+
+            <p>{{ item.tool.description }}</p>
+
+            <p>
+                <strong>Category:</strong>
+                {{ item.tool.category|replace("_", " ")|title }}
+            </p>
+
+            <p>
+                <strong>Recommendation score:</strong>
+                {{ "%.1f"|format(item.fit_score) }}%
+            </p>
+
+            <p>
+                <strong>Why we recommend it:</strong>
+                {{ item.why_fit }}
+            </p>
+
+            <p>
+                <strong>Pricing:</strong>
+                {{ item.tool.pricing_info }}
+            </p>
+
+            {% if item.fit_note %}
+            <p>{{ item.fit_note }}</p>
+            {% endif %}
+
+            {% if item.tool.website %}
+            <a href="{{ item.tool.website }}" target="_blank" rel="noopener noreferrer">
+                Visit Official Website
+            </a>
+            {% endif %}
+
+        </article>
+
+        {% else %}
+
+        <p>No recommendations are available yet. Please try again.</p>
+
+        {% endfor %}
+
+    </div>
+
+    <h2>Your First-Week Action Plan</h2>
+
+    <ol>
+        {% for action in action_plan %}
+        <li>{{ action }}</li>
+        {% endfor %}
+    </ol>
+
+    <button onclick="window.print()">Print Results</button>
+
+    <a href="{{ url_for('assessment_page') }}" class="button">
+        Start Again
+    </a>
+
+</section>
+
+{% endblock %}

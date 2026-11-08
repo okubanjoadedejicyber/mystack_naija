@@ -1,0 +1,271 @@
+{% extends "layout.html" %}
+{% block title %}Business Assessment | MyStack Naija{% endblock %}
+
+{% block content %}
+<section class="assessment-card">
+    <h1>Business assessment</h1>
+    <p>Answer these ten questions to discover tools that suit your business.</p>
+
+    <div class="progress-track">
+        <div id="progress" class="progress-fill"></div>
+    </div>
+    <p id="progressText" class="small">Question 1 of 10</p>
+
+    <div id="error" class="error"></div>
+
+    <section class="question active" data-question="0">
+        <h2>Before we begin</h2>
+        <label>Business name</label>
+        <input id="businessName" placeholder="Enter your business name" required>
+
+        <h3>1. What kind of business do you run?</h3>
+        <select id="businessType">
+            <option value="">Select your business type</option>
+            <option value="Retail">Retail / Trading</option>
+            <option value="Food">Food / Restaurant</option>
+            <option value="Fashion">Fashion / Clothing</option>
+            <option value="Beauty">Beauty / Personal care</option>
+            <option value="Professional services">Professional services</option>
+            <option value="Education">Education / Training</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Technology">Technology</option>
+            <option value="Other">Other</option>
+        </select>
+    </section>
+
+    <section class="question" data-question="1">
+        <h2>2. What could you comfortably spend on a new tool each month?</h2>
+        <label class="choice"><input type="radio" name="budget" value="free"> Nothing for now / Free tools only</label>
+        <label class="choice"><input type="radio" name="budget" value="low"> Under ₦5,000</label>
+        <label class="choice"><input type="radio" name="budget" value="medium"> ₦5,000 – ₦20,000</label>
+        <label class="choice"><input type="radio" name="budget" value="high"> Above ₦20,000</label>
+    </section>
+
+    <section class="question" data-question="2">
+        <h2>3. Where do you mostly interact with customers?</h2>
+        <p class="small">Select all that apply.</p>
+        <label class="choice"><input type="checkbox" name="channel" value="WhatsApp"> WhatsApp</label>
+        <label class="choice"><input type="checkbox" name="channel" value="Instagram"> Instagram</label>
+        <label class="choice"><input type="checkbox" name="channel" value="Facebook"> Facebook</label>
+        <label class="choice"><input type="checkbox" name="channel" value="Website"> Website</label>
+        <label class="choice"><input type="checkbox" name="channel" value="Physical store"> Physical store</label>
+        <label class="choice"><input type="checkbox" name="channel" value="Phone calls"> Phone calls</label>
+        <label class="choice"><input type="checkbox" name="channel" value="Other"> Other</label>
+    </section>
+
+    <section class="question" data-question="3">
+        <h2>4. How does your business currently use digital or AI tools?</h2>
+        <label class="choice"><input type="radio" name="tool_use" value="not_using"> I do not use them</label>
+        <label class="choice"><input type="radio" name="tool_use" value="basic_digital"> I use basic digital
+            tools</label>
+        <label class="choice"><input type="radio" name="tool_use" value="some_ai"> I sometimes use AI tools</label>
+        <label class="choice"><input type="radio" name="tool_use" value="regular_ai"> I regularly use AI and digital
+            tools</label>
+    </section>
+
+    <section class="question" data-question="4">
+        <h2>5. How much of your daily work is repetitive or manual?</h2>
+        <label class="choice"><input type="radio" name="manual_work" value="most_tasks"> Almost all my tasks</label>
+        <label class="choice"><input type="radio" name="manual_work" value="many_tasks"> Many tasks</label>
+        <label class="choice"><input type="radio" name="manual_work" value="some_tasks"> Some tasks</label>
+        <label class="choice"><input type="radio" name="manual_work" value="few_tasks"> Very few tasks</label>
+    </section>
+
+    <section class="question" data-question="5">
+        <h2>6. How do you handle customer questions and messages?</h2>
+        <label class="choice"><input type="radio" name="customer_messages" value="personal_only"> I reply to each person
+            manually</label>
+        <label class="choice"><input type="radio" name="customer_messages" value="quick_replies"> I use saved or quick
+            replies</label>
+        <label class="choice"><input type="radio" name="customer_messages" value="organised_inbox"> I use an organised
+            inbox</label>
+        <label class="choice"><input type="radio" name="customer_messages" value="automated_support"> I use automated
+            customer support</label>
+    </section>
+
+    <section class="question" data-question="6">
+        <h2>7. How do you create content or promote your business?</h2>
+        <label class="choice"><input type="radio" name="content_frequency" value="rarely"> Rarely</label>
+        <label class="choice"><input type="radio" name="content_frequency" value="when_time"> Whenever I have
+            time</label>
+        <label class="choice"><input type="radio" name="content_frequency" value="weekly"> At least weekly</label>
+        <label class="choice"><input type="radio" name="content_frequency" value="planned"> I follow a content
+            plan</label>
+    </section>
+
+    <section class="question" data-question="7">
+        <h2>8. How do you keep business records?</h2>
+        <label class="choice"><input type="radio" name="record_keeping" value="paper_memory"> Paper or memory</label>
+        <label class="choice"><input type="radio" name="record_keeping" value="phone_notes"> Phone notes</label>
+        <label class="choice"><input type="radio" name="record_keeping" value="spreadsheets"> Spreadsheets</label>
+        <label class="choice"><input type="radio" name="record_keeping" value="business_software"> Business
+            software</label>
+    </section>
+
+    <section class="question" data-question="8">
+        <h2>9. How do you track sales, expenses and money?</h2>
+        <label class="choice"><input type="radio" name="money_tracking" value="not_tracked"> I do not track them
+            regularly</label>
+        <label class="choice"><input type="radio" name="money_tracking" value="roughly"> I estimate them</label>
+        <label class="choice"><input type="radio" name="money_tracking" value="spreadsheet"> I use a spreadsheet</label>
+        <label class="choice"><input type="radio" name="money_tracking" value="software"> I use accounting or business
+            software</label>
+    </section>
+
+    <section class="question" data-question="9">
+        <h2>10. Which tasks would you most like help with?</h2>
+        <p class="small">Choose up to three.</p>
+        <label class="choice"><input type="checkbox" name="pain" value="Getting more sales"> Getting more sales</label>
+        <label class="choice"><input type="checkbox" name="pain" value="Managing customers and messages"> Managing
+            customers and messages</label>
+        <label class="choice"><input type="checkbox" name="pain" value="Creating content and designs"> Creating content
+            and designs</label>
+        <label class="choice"><input type="checkbox" name="pain" value="Managing records and inventory"> Managing
+            records and inventory</label>
+        <label class="choice"><input type="checkbox" name="pain" value="Tracking expenses and payments"> Tracking
+            expenses and payments</label>
+        <label class="choice"><input type="checkbox" name="pain" value="Automating repetitive tasks"> Automating
+            repetitive tasks</label>
+    </section>
+
+    <div class="button-row">
+        <button type="button" id="backButton" class="button secondary" disabled>Back</button>
+        <button type="button" id="nextButton" class="button">Next</button>
+    </div>
+</section>
+
+<script>
+    const questions = [...document.querySelectorAll(".question")];
+    let current = 0;
+
+    const progress = document.getElementById("progress");
+    const progressText = document.getElementById("progressText");
+    const errorBox = document.getElementById("error");
+    const backButton = document.getElementById("backButton");
+    const nextButton = document.getElementById("nextButton");
+
+    function showQuestion() {
+        questions.forEach((q, i) => q.classList.toggle("active", i === current));
+        progress.style.width = ((current + 1) / questions.length * 100) + "%";
+        progressText.textContent = `Question ${current + 1} of 10`;
+        backButton.disabled = current === 0;
+        nextButton.textContent = current === questions.length - 1 ? "Submit assessment" : "Next";
+        errorBox.textContent = "";
+    }
+
+    function selected(name) {
+        return document.querySelector(`input[name="${name}"]:checked`);
+    }
+
+    function validateCurrent() {
+        if (current === 0) {
+            if (!document.getElementById("businessName").value.trim()) {
+                return "Enter your business name.";
+            }
+            if (!document.getElementById("businessType").value) {
+                return "Select your business type.";
+            }
+        }
+
+        if (current === 1 && !selected("budget")) return "Select your monthly budget.";
+        if (current === 2 && !document.querySelector('input[name="channel"]:checked')) {
+            return "Select at least one customer channel.";
+        }
+
+        const radioQuestions = {
+            3: "tool_use",
+            4: "manual_work",
+            5: "customer_messages",
+            6: "content_frequency",
+            7: "record_keeping",
+            8: "money_tracking"
+        };
+
+        if (radioQuestions[current] && !selected(radioQuestions[current])) {
+            return "Please select an answer before continuing.";
+        }
+
+        if (current === 9) {
+            const pains = document.querySelectorAll('input[name="pain"]:checked');
+            if (!pains.length) return "Select at least one task.";
+            if (pains.length > 3) return "Choose no more than three tasks.";
+        }
+
+        return "";
+    }
+
+    backButton.addEventListener("click", () => {
+        if (current > 0) current--;
+        showQuestion();
+    });
+
+    nextButton.addEventListener("click", async () => {
+        const error = validateCurrent();
+        if (error) {
+            errorBox.textContent = error;
+            return;
+        }
+
+        if (current < questions.length - 1) {
+            current++;
+            showQuestion();
+            return;
+        }
+
+        nextButton.disabled = true;
+        nextButton.textContent = "Submitting...";
+
+        const getValue = name => selected(name)?.value;
+
+        const channels = [...document.querySelectorAll('input[name="channel"]:checked')]
+            .map(item => item.value);
+
+        const painPoints = [...document.querySelectorAll('input[name="pain"]:checked')]
+            .map(item => item.value);
+
+        const payload = {
+            business_name: document.getElementById("businessName").value.trim(),
+            business_type: document.getElementById("businessType").value,
+            monthly_budget: getValue("budget"),
+            channels: channels,
+            answers: {
+                tool_use: getValue("tool_use"),
+                manual_work: getValue("manual_work"),
+                customer_messages: getValue("customer_messages"),
+                content_frequency: getValue("content_frequency"),
+                record_keeping: getValue("record_keeping"),
+                money_tracking: getValue("money_tracking"),
+                pain_points: painPoints
+            }
+        };
+
+        try {
+            const response = await fetch("/api/assess", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) throw new Error(result.error || "Submission failed.");
+
+            window.location.href = result.redirect;
+        } catch (error) {
+            errorBox.textContent = error.message;
+            nextButton.disabled = false;
+            nextButton.textContent = "Submit assessment";
+        }
+    });
+
+    document.querySelectorAll('input[name="pain"]').forEach(input => {
+        input.addEventListener("change", () => {
+            const checked = document.querySelectorAll('input[name="pain"]:checked');
+            if (checked.length > 3) input.checked = false;
+        });
+    });
+
+    showQuestion();
+</script>
+{% endblock %}
